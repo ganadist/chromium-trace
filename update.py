@@ -1,4 +1,4 @@
-#!/usr/bin/python2.6
+#!/usr/bin/python2
 
 import httplib, json, optparse, os, urllib, shutil, subprocess, sys
 
@@ -23,7 +23,7 @@ if options.local_dir is None:
 
   # Pull the latest source from the upstream svn
   svn_co_args = ['svn', 'co', upstream_svn, trace_viewer_dir]
-  p = subprocess.Popen(svn_co_args, stdout=subprocess.PIPE)
+  p = subprocess.Popen(svn_co_args, stdout=subprocess.PIPE, env={'LANG': 'en_US.UTF-8', 'LANGUAGE': 'en'})
   svn_output = ''
   while p.poll() is None:
     svn_output += p.stdout.read()
