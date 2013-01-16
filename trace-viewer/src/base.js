@@ -106,7 +106,7 @@ this.base = (function() {
     req.open('GET', src, false);
     req.send(null);
     if (req.status != 200)
-      throw new Error('Could not find ' + deps +
+      throw new Error('Could not find ' + src +
                       '. Run calcdeps.py and try again.');
 
     base.addModuleStylesheet = addModuleStylesheet;
@@ -128,7 +128,8 @@ this.base = (function() {
     if (window.FLATTENED) {
       if (!window.FLATTENED[dependentModuleName])
         throw new Error('Somehow, module ' + dependentModuleName +
-                        ' didn\'t get flattened!');
+                        ' didn\'t get stored in the flattened js file! ' +
+                        'You may need to rerun build/flatten.py');
       return;
     }
     ensureDepsLoaded();
